@@ -28,9 +28,9 @@ class Player(Sprite):
 
 class Platform(Sprite):
     def update(self):
-        self.rect.y -= self.speed
+        self.rect.y += self.speed
         if self.rect.y > WINDOW_HEIGHT:
-            self.rect.x = random.randint(0, 350)
+            self.rect.x = randint(0, 350)
             self.rect.y -= 50
 
 
@@ -45,7 +45,7 @@ SPEED = 4
 window = display.set_mode((WINDOW_WIGTH, WINDOW_HEIGHT))
 player = Player("pngwing.com.png", 150, 500, 50, 50, 5)
 background = transform.scale(image.load("6204882.jpg"), (WINDOW_WIGTH, WINDOW_HEIGHT))
-platform = Platform("Scre0.png", 100, 400, 50, 50, 5)
+platform = Platform("Scre0.png", 100, 300, 40, 20, 2)
 clock = time.Clock()
 
 
@@ -57,9 +57,10 @@ while run:
         if e.type == QUIT:
             run = False
 
+
+    window.blit(background, (0,0))
     platform.update()
     platform.draw(window)
-    window.blit(background, (0,0))
     player.update()
     player.draw(window)
 
